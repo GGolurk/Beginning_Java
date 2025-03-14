@@ -9,16 +9,26 @@ Algorithm writing (for guessing numbers):
 
     Constructor:
         playing = true
+        Boolean correctInput = false
         while playing
             userInput = menu()
             if userInput == 0
                 playing = false
+                correctInput = true
             if userInput == 1
+                correctInput = true
                 humanGuesser()
             if userInput == 2
                 computerGuesser()
-            else
+                correctInput = true
+            if correctInput == false
                 "Sorry, I didn't get that. Please retry, or hit '0' to quit."
+
+    Menu:
+        scanner input = new Scanner
+        println ("Enter 0 to quit, 1 for human guesser, or 2 for computer guesser")
+        string userInput = input.nextLine()
+        return userInput
 
     Data members:
         bool playing
