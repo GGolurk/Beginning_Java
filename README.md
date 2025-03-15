@@ -34,11 +34,27 @@ Algorithm writing (for guessing numbers):
         bool playing
 
     humanGuesser:
-        targetNum = computer generates random number between 1 and 100
-        num guesses = 0
+        double targetDouble = computer generates random number between 0 and 1
+        targetDouble *= 100
+        int targetNum = (int) targetDouble
+        Integer guesses = 0
+        println "I'm thinking of a number. Guess, and I'll tell you if it was too high, too low, or correct."
+        println "It is always possible to do this in seven tries. Do your best!"
         while guessing
-            human guesses number
-            computer tells result (high, low, correct)
+            Scanner input = new Scanner(System.in)
+            String userInput = input.nextLine
+            try{
+                Integer userNum = Integer.parseInt(userInput)
+                if (101 > userInput) {
+                    if(userInput > 0){
+                        //Do stuff
+                    }
+                } else {
+                    println "Please enter a number between 1 and 100."
+                }
+            } except {
+                println "Please enter a number."
+            }
             guesses++
         if guesses < 7
             you did good
@@ -49,20 +65,24 @@ Algorithm writing (for guessing numbers):
     
 
     computerGuesser:
-        int lowEnd = 0
-        int highEnd = 100
-        int guess = 50
+        Integer guesses = 0
+        Integer lowEnd = 0
+        Integer highEnd = 100
+        Integer guess = 50
         while guessing
+            guesses += 1;
+            print guess
             get user input
             optional: validate user input
             if user input == low
                 highEnd = guess
                 guess = lowEnd + (highEnd - lowEnd) / 2
-                print guess
             if user input == high
                 lowEnd = guess
                 guess = lowEnd + (highEnd - lowEnd) / 2
-                print guess
             if user input == correct
                 guessing = false
+            if guesses >= 6
+                guessing = false
+                print "your number is " + guess
 

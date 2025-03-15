@@ -24,17 +24,16 @@ public class Guesser {
 				correctInput = true;
 			} // End if 
 			if(userInput.equals("1")){
-				System.out.println("Human guesser coming soon");
+				humanGuesser();
 				correctInput = true;
 			} // End if 
 			if(userInput.equals("2")){
-				System.out.println("Computer Guesser coming soon");
+				computerGuesser();
 				correctInput = true;
 			} // End if 
 			if(correctInput == false){
 				System.out.println("Sorry, I didn't get that. Please retry, or hit '0' to quit.");
 			} // End if 
-			playing = false;
 		} // End while
 	} // End constructor
 
@@ -47,10 +46,66 @@ public class Guesser {
 	} // End menu
 
 	public void humanGuesser(){
-
+		double targetDouble = Math.random();
+		targetDouble *= 100;
+		int targetNum = (int) targetDouble;
+		Integer guesses = 0;
+		System.out.println(targetNum);
+		Boolean guessing = true;
+		while(guessing == true){
+			Scanner input = new Scanner(System.in);
+			String userInput = input.nextLine();
+			try{
+				Integer userNum = Integer.parseInt(userInput);
+				if(101 > userNum){
+					if(userNum > 0){
+						
+					} // End if
+				} // End if
+			} catch (NumberFormatException e) {
+				System.out.println("Please enter a number.");
+			} // End try/catch
+			guessing = false;
+		} // End while
 	} // End human guesser
 
 	public void computerGuesser(){
-
+		Integer guesses = 0;
+		// Had to be 1/101 so it guesses from 1-100 rather than 0-99.
+		Integer lowEnd = 1;
+		Integer highEnd = 101;
+		Integer guess = 50;
+		Boolean guessing = true;
+		while(guessing == true){
+			guesses += 1;
+			Scanner input = new Scanner(System.in);
+			System.out.print("I guess " + guess + ". Is this (H)igh, (L)ow, or (C)orrect?");
+			String userInput = input.nextLine();
+			Boolean correct = false;
+			if(userInput.equals("l")){
+				correct = true;
+				highEnd = guess;
+				guess = lowEnd + (highEnd - lowEnd) / 2;
+			} // End if
+			if(userInput.equals("h")){
+				correct = true;
+				lowEnd = guess;
+				guess = lowEnd + (highEnd - lowEnd) / 2;
+			} // End if
+			if(userInput.equals("c")){
+				correct = true;
+				guessing = false;
+				System.out.println("Correct!");
+			} // End if
+			if(correct == false){
+				System.out.println("Sorry, I didn't catch that. Please try again.");
+			} // End if
+			// Making sure the user can't cheat!
+			if(guesses >= 6){
+				guessing = false;
+				System.out.println("Your number is " + guess);
+			}
+		} // End while
+		System.out.println("");
 	} // End computer guesser
 } // End class
