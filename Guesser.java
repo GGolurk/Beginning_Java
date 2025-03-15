@@ -59,13 +59,22 @@ public class Guesser {
 				Integer userNum = Integer.parseInt(userInput);
 				if(101 > userNum){
 					if(userNum > 0){
-						
+						guesses++;
+						if(userNum > targetNum){
+							System.out.println("Too high.");
+						}
+						if(userNum < targetNum){
+							System.out.println("Too low.");
+						}
+						if(userNum.equals(targetNum)){
+							System.out.println("Correct! You took " + guesses + " tries.");
+							guessing = false;
+						}
 					} // End if
 				} // End if
 			} catch (NumberFormatException e) {
 				System.out.println("Please enter a number.");
 			} // End try/catch
-			guessing = false;
 		} // End while
 	} // End human guesser
 

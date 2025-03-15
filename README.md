@@ -45,9 +45,21 @@ Algorithm writing (for guessing numbers):
             String userInput = input.nextLine
             try{
                 Integer userNum = Integer.parseInt(userInput)
-                if (101 > userInput) {
-                    if(userInput > 0){
-                        //Do stuff
+                if (101 > userNum) {
+                    if(userNum > 0){
+                        guesses++;
+                        if(userNum > targetNum){
+                            println "Too high."
+                        }
+                        if(userNum < targetNum){
+                            println "Too low."
+                        }
+                        if(userNum == targetNum){
+                            println "Correct! You took " + guesses + " tries."
+                            guessing = false
+                        }
+                    } else {
+                        println "Please enter a number between 1 and 100."
                     }
                 } else {
                     println "Please enter a number between 1 and 100."
